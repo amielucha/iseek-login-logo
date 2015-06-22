@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: amielucha
-Donate link: http://iseek.ie/
+Author Url: http://iseek.ie/
 Tags: login logo
 Requires at least: 4.1.1
 Tested up to: 4.2.2
