@@ -59,11 +59,11 @@ function baseek_get_logo_height() {
   	$logo_h = null;
 
   	// Load medium size image if it exists
-  	if ( site_logo()->logo['sizes']['medium']['width'] && site_logo()->logo['sizes']['medium']['height'])
+  	if ( isset( site_logo()->logo['sizes']['medium']['width'] , site_logo()->logo['sizes']['medium']['height'] ) )
   		$logo_h = intval( 320 / site_logo()->logo['sizes']['medium']['width'] * site_logo()->logo['sizes']['medium']['height'] );
 
   	// Load fullsize image. Probably the logo is small or is an SVG image
-  	elseif ( site_logo()->logo['sizes']['full']['width'] && site_logo()->logo['sizes']['full']['height'])
+  	elseif ( isset( site_logo()->logo['sizes']['full']['width'] , site_logo()->logo['sizes']['full']['height'] ) )
   		$logo_h = intval( 320 / site_logo()->logo['sizes']['full']['width'] * site_logo()->logo['sizes']['full']['height'] );
 
   	// Set logo height
@@ -80,7 +80,7 @@ function baseek_get_login_logo() {
 	 */
 	if ( function_exists( 'jetpack_has_site_logo' ) && function_exists('site_logo') ) {
 		if ( jetpack_has_site_logo() ) {
-			if (site_logo()->logo['sizes']['medium']['url'])
+			if ( isset( site_logo()->logo['sizes']['medium']['url'] ) )
 				return site_logo()->logo['sizes']['medium']['url'];
 			else
 				return site_logo()->logo['url'];
@@ -100,6 +100,7 @@ function baseek_login_logo_styles() { ?>
 
 		// Uncomment for debug information:
 			//var_dump(site_logo()->logo);
+
 	?>
     <style type="text/css">
         .login h1 a {
