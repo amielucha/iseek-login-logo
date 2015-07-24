@@ -25,8 +25,9 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /*
- * TODO: develop as a plugin, post to Github
+ * TODO:
  * - maybe look for logo.jpg or logo.png in the site's folder?
+ * - verify that it works with WP version 4.3
  */
 
 /*
@@ -109,6 +110,144 @@ function baseek_login_logo_styles() { ?>
             width: 100%;
             height: <?php echo baseek_get_logo_height() ?>;
         }
+
+	      <?php if (get_theme_mod( 'login_bg' )): ?>
+	        body.login {
+	        	background-color: <?php echo get_theme_mod( 'login_bg' ) ?>;
+	        }
+        <?php endif ?>
+
+				<?php if (get_theme_mod( 'login_bg_text' )): ?>
+	        body.login #backtoblog a, body.login #nav a {
+	        	color: <?php echo get_theme_mod( 'login_bg_text' ) ?>;
+	        }
+        <?php endif ?>
+
+        <?php if (get_theme_mod( 'login_bg_text_hover' )): ?>
+	        body.login #backtoblog a:hover, body.login #nav a:hover,
+	        body.login #backtoblog a:active, body.login #nav a:active {
+	        	color: <?php echo get_theme_mod( 'login_bg_text_hover' ) ?>;
+	        }
+        <?php endif ?>
+
+        <?php if (get_theme_mod( 'login_primary' )): ?>
+	        body.login .button-primary {
+	        	background-color: <?php echo get_theme_mod( 'login_primary' ) ?>;
+	        }
+
+	        body.login .button-primary,
+	        body.login .button-primary:hover,
+	        body.login .button-primary:active,
+	        body.login input[type=text]:focus,
+	        body.login input[type=password]:focus,
+	        body.login input[type=checkbox]:focus {
+	        	border-color: <?php echo get_theme_mod( 'login_primary' ) ?>;
+	        }
+
+	        body.login input[type=text]:focus,
+	        body.login input[type=password]:focus,
+	        body.login input[type=checkbox]:focus {
+	        	box-shadow: <?php echo get_theme_mod( 'login_primary' ) ?>  0px 0px 2px 0px;
+	        }
+
+	        input[type=checkbox]:checked:before {
+	        	color: <?php echo get_theme_mod( 'login_primary' ) ?>;
+	        }
+        <?php endif ?>
+
+        <?php if (get_theme_mod( 'login_primary_hover' )): ?>
+	        body.login .button-primary:hover,
+	        body.login .button-primary:active {
+	        	background-color: <?php echo get_theme_mod( 'login_primary_hover' ) ?>;
+	        }
+        <?php endif ?>
+
+        }
     </style>
+    <?php echo get_theme_mod( 'login_bg' ); ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'baseek_login_logo_styles' );
+
+function login_logo_customize($wp_customize) {
+	/*
+	 * Adds login background image to the Customizer
+	 */
+
+	// Add Customizer Section
+	$wp_customize->add_section( 'login_logo_section', array(
+	    'title'          => 'Login Screen',
+	    'priority'       => 900,
+	) );
+
+	/*
+	 * Background Color
+	 */
+	// Add the setting
+	$wp_customize->add_setting( 'login_bg', array(
+	    'default'        => '#F1F1F1',
+	) );
+
+	// Add the color picker
+	$wp_customize->add_control( 'login_bg', array(
+	    'label'   => 'Background',
+	    'section' => 'login_logo_section',
+	    'type'    => 'color',
+	) );
+
+	/*
+	 * Color of the text set on the background
+	 */
+	// Add the setting
+	$wp_customize->add_setting( 'login_bg_text', array(
+	    'default'        => '#999',
+	) );
+
+	// Add the color picker
+	$wp_customize->add_control( 'login_bg_text', array(
+	    'label'   => 'Background Text',
+	    'section' => 'login_logo_section',
+	    'type'    => 'color',
+	) );
+
+	// Add the setting
+	$wp_customize->add_setting( 'login_bg_text_hover', array(
+	    'default'        => '#999',
+	) );
+
+	// Add the color picker
+	$wp_customize->add_control( 'login_bg_text_hover', array(
+	    'label'   => 'Background Text Hover',
+	    'section' => 'login_logo_section',
+	    'type'    => 'color',
+	) );
+
+	/*
+	 * Primary color for buttons and outlines
+	 */
+	// Add the setting
+	$wp_customize->add_setting( 'login_primary', array(
+	    'default'        => '#0091cd',
+	) );
+
+	// Add the color picker
+	$wp_customize->add_control( 'login_primary', array(
+	    'label'   => 'Primary Colour',
+	    'section' => 'login_logo_section',
+	    'type'    => 'color',
+	) );
+
+	// Add the setting
+	$wp_customize->add_setting( 'login_primary_hover', array(
+	    'default'        => '#0073aa',
+	) );
+
+	// Add the color picker
+	$wp_customize->add_control( 'login_primary_hover', array(
+	    'label'   => 'Primary Colour Hover',
+	    'section' => 'login_logo_section',
+	    'type'    => 'color',
+	) );
+
+}
+
+add_action('customize_register', 'login_logo_customize');
