@@ -9,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name:       iSeek Login Logo
  * Plugin URI:        https://github.com/amielucha/baSeek
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       iSeek logo plugin designed to work with Jetpack.
  * Version:           1.1.0
  * Author:            Slawek Amielucha @iseek.ie
  * Author URI:        https://github.com/amielucha
