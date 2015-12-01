@@ -188,11 +188,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_bg', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_bg', array(
 	    'label'   => 'Background',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 	/*
 	 * Color of the text set on the background
@@ -203,11 +203,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_bg_text', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_bg_text', array(
 	    'label'   => 'Background Text',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 	// Add the setting
 	$wp_customize->add_setting( 'login_bg_text_hover', array(
@@ -215,11 +215,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_bg_text_hover', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_bg_text_hover', array(
 	    'label'   => 'Background Text Hover',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 	/*
 	 * Primary color for buttons and outlines
@@ -230,11 +230,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_primary', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_primary', array(
 	    'label'   => 'Primary Colour',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 	// Add the setting
 	$wp_customize->add_setting( 'login_primary_hover', array(
@@ -242,11 +242,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_primary_hover', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_primary_hover', array(
 	    'label'   => 'Primary Colour Hover',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 }
 
