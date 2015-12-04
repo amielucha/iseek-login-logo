@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @link              http://iseek.ie
@@ -8,7 +9,7 @@
  * @wordpress-plugin
  * Plugin Name:       iSeek Login Logo
  * Plugin URI:        https://github.com/amielucha/baSeek
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       iSeek logo plugin designed to work with Jetpack.
  * Version:           1.1.0
  * Author:            Slawek Amielucha @iseek.ie
  * Author URI:        https://github.com/amielucha
@@ -167,18 +168,6 @@ function baseek_login_logo_styles() { ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'baseek_login_logo_styles' );
 
-function baseek_login_logo_change_url() { ?>
-	<script type="text/javascript">
-		window.onload = function() {
-			// Change logo URL
-			var logo = document.querySelector('#login > h1 > a');
-			logo.setAttribute('href', '<?php echo home_url("/") ?>');
-			logo.setAttribute('title', 'Back to homepage');
-		};
-	</script>
-<?php
-} add_action( 'login_enqueue_scripts', 'baseek_login_logo_change_url' );
-
 function login_logo_customize($wp_customize) {
 	/*
 	 * Adds login background image to the Customizer
@@ -199,11 +188,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_bg', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_bg', array(
 	    'label'   => 'Background',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 	/*
 	 * Color of the text set on the background
@@ -214,11 +203,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_bg_text', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_bg_text', array(
 	    'label'   => 'Background Text',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 	// Add the setting
 	$wp_customize->add_setting( 'login_bg_text_hover', array(
@@ -226,11 +215,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_bg_text_hover', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_bg_text_hover', array(
 	    'label'   => 'Background Text Hover',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 	/*
 	 * Primary color for buttons and outlines
@@ -241,11 +230,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_primary', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_primary', array(
 	    'label'   => 'Primary Colour',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 	// Add the setting
 	$wp_customize->add_setting( 'login_primary_hover', array(
@@ -253,11 +242,11 @@ function login_logo_customize($wp_customize) {
 	) );
 
 	// Add the color picker
-	$wp_customize->add_control( 'login_primary_hover', array(
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'login_primary_hover', array(
 	    'label'   => 'Primary Colour Hover',
 	    'section' => 'login_logo_section',
 	    'type'    => 'color',
-	) );
+	) ) );
 
 }
 
