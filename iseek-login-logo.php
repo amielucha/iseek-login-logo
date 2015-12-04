@@ -168,6 +168,18 @@ function baseek_login_logo_styles() { ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'baseek_login_logo_styles' );
 
+function baseek_login_logo_change_url() { ?>
+	<script type="text/javascript">
+		window.onload = function() {
+			// Change logo URL
+			var logo = document.querySelector('#login > h1 > a');
+			logo.setAttribute('href', '<?php echo home_url("/") ?>');
+			logo.setAttribute('title', 'Back to homepage');
+		};
+	</script>
+<?php
+} add_action( 'login_enqueue_scripts', 'baseek_login_logo_change_url' );
+
 function login_logo_customize($wp_customize) {
 	/*
 	 * Adds login background image to the Customizer
