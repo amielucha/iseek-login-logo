@@ -164,7 +164,6 @@ function baseek_login_logo_styles() { ?>
 
         }
     </style>
-    <?php echo get_theme_mod( 'login_bg' ); ?>
 <?php }
 add_action( 'login_enqueue_scripts', 'baseek_login_logo_styles' );
 
