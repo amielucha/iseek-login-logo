@@ -10,7 +10,7 @@
  * Plugin Name:       iSeek Login Logo
  * Plugin URI:        https://github.com/amielucha/baSeek
  * Description:       iSeek logo plugin designed to work with Jetpack.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Author:            Slawek Amielucha @iseek.ie
  * Author URI:        https://github.com/amielucha
  * License:           GPL-2.0+
@@ -79,7 +79,11 @@ function baseek_get_login_logo() {
 	/*
 	 * Returns the site's logo. If no logo has been set returns iSeek logo.
 	 */
-	if ( function_exists( 'jetpack_has_site_logo' ) && function_exists('site_logo') ) {
+	if ( function_exists( 'the_custom_logo' ) ) {
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+		$LogoImage = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+		return $LogoImage[0];
+	} elseif ( function_exists( 'jetpack_has_site_logo' ) && function_exists('site_logo') ) {
 		if ( jetpack_has_site_logo() ) {
 			if ( isset( site_logo()->logo['sizes']['medium']['url'] ) )
 				return site_logo()->logo['sizes']['medium']['url'];
@@ -104,7 +108,7 @@ function baseek_login_logo_styles() { ?>
 
 	?>
     <style type="text/css">
-        .login h1 a {
+        body.login h1 a {
             background-image: url(<?php echo baseek_get_login_logo(); ?>);
             background-size: contain;
             width: 100%;
