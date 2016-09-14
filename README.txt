@@ -3,8 +3,8 @@ Contributors: amielucha
 Author Url: http://iseek.ie/
 Tags: login logo
 Requires at least: 4.4.0
-Tested up to: 4.6
-Stable tag: 1.3.0
+Tested up to: 4.6.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,12 @@ Works with WordPress Theme Logo or Jetpack logo.
 If there's no logo set up in the frontend Customizer, the default iSeek logo will be loaded.
 
 == Changelog ==
+
+## 1.4
+
+- Added notification border styling
+- Updated hover and focus styles
+- Removed box and text shadows
 
 ## 1.3
 

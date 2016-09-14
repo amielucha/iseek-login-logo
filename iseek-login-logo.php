@@ -3,14 +3,14 @@
 /**
  *
  * @link              http://iseek.ie
- * @since             1.0.0
+ * @since             1.4.0
  * @package           iseek-login-logo
  *
  * @wordpress-plugin
  * Plugin Name:       iSeek Login Logo
- * Plugin URI:        https://github.com/amielucha/baSeek
- * Description:       iSeek logo plugin designed to work with Jetpack.
- * Version:           1.3.0
+ * Plugin URI:        https://github.com/amielucha/iseek-login-logo
+ * Description:       Customize login theme using the frontend Customizer and the site_logo().
+ * Version:           1.4.0
  * Author:            Slawek Amielucha @iseek.ie
  * Author URI:        https://github.com/amielucha
  * License:           GPL-2.0+
@@ -126,8 +126,13 @@ function baseek_login_logo_styles() { ?>
         <?php endif ?>
 
         <?php if (get_theme_mod( 'login_primary' )): ?>
+	        body.login #login_error, body.login .message {
+						border-left-color: <?php echo get_theme_mod( 'login_primary' ) ?>;
+					}
+
 	        body.login .button-primary {
 	        	background-color: <?php echo get_theme_mod( 'login_primary' ) ?>;
+	        	text-shadow: none;
 	        }
 
 	        body.login .button-primary,
@@ -150,10 +155,22 @@ function baseek_login_logo_styles() { ?>
 	        }
         <?php endif ?>
 
-        <?php if (get_theme_mod( 'login_primary_hover' )): ?>
+        <?php if (get_theme_mod( 'login_primary' ) && get_theme_mod( 'login_primary_hover' )): ?>
 	        body.login .button-primary:hover,
 	        body.login .button-primary:active {
 	        	background-color: <?php echo get_theme_mod( 'login_primary_hover' ) ?>;
+	        }
+
+	        body.wp-core-ui .button-primary.focus, body.wp-core-ui .button-primary.hover, body.wp-core-ui .button-primary:focus, body.wp-core-ui .button-primary:hover {
+	        	background-color: <?php echo get_theme_mod( 'login_primary_hover' ) ?>;
+	        	box-shadow: none;
+	        	border-color: <?php echo get_theme_mod( 'login_primary_hover' ) ?>;
+	        }
+
+	        body.login .button-primary,
+	        body.login .button-primary:hover,
+	        body.login .button-primary:active {
+	        	box-shadow: inset 0 2px 0 <?php echo get_theme_mod( 'login_primary' ) ?>;
 	        }
         <?php endif ?>
 
