@@ -10,7 +10,7 @@
  * Plugin Name:       iSeek Login Logo
  * Plugin URI:        https://github.com/amielucha/iseek-login-logo
  * Description:       Customize login theme using the frontend Customizer and the site_logo().
- * Version:           1.4.0
+ * Version:           1.4.1
  * Author:            Slawek Amielucha @iseek.ie
  * Author URI:        https://github.com/amielucha
  * License:           GPL-2.0+
@@ -73,15 +73,15 @@ function baseek_get_login_logo() {
 	/*
 	 * Returns the site's logo. If no logo has been set returns iSeek logo.
 	 */
-	if ( function_exists( 'site_logo' ) ) {
+	if ( function_exists( 'the_custom_logo' ) ) {
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+		$LogoImage = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+		return $LogoImage[0];
+	} elseif ( function_exists( 'site_logo' ) ) {
 		if ( isset( site_logo()->logo['sizes']['medium']['url'] ) )
 				return site_logo()->logo['sizes']['medium']['url'];
 			else
 				return site_logo()->logo['url'];
-	} elseif ( function_exists( 'the_custom_logo' ) ) {
-		$custom_logo_id = get_theme_mod( 'custom_logo' );
-		$LogoImage = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-		return $LogoImage[0];
 	}	else {
 		return baseek_get_iseek_logo();
 	}
